@@ -60,7 +60,7 @@ favorite_words = [
 "Vorpal", "vorpal"
 ]
 
-#Get the folder path by right-clicking on the the folder and selecting "copy as path." Remove quotations marks after pasting
+#Get the folder path by right-clicking on the the folder and selecting "copy as path." Remove quotations marks after pasting.
 folder_path = input("Enter folder path: ")
 word_lists = process_folder(folder_path)
 
