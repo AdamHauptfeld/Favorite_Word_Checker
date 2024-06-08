@@ -1,0 +1,79 @@
+"""
+This program takes a folder as input, and, for each word document in that
+folder, it displays the words they include that belong to my favorite words
+list.
+
+This code was written with the assistance of Claude AI
+"""
+
+import os
+import docx
+
+
+def extract_words_from_docx(file_path):
+    doc = docx.Document(file_path)
+    words = []
+    for para in doc.paragraphs:
+        words.extend(para.text.split())
+    return words
+
+def process_folder(folder_path):
+    word_lists = {}
+    for filename in os.listdir(folder_path):
+        if filename.endswith('.docx'):
+            file_path = os.path.join(folder_path, filename)
+            words = extract_words_from_docx(file_path)
+            base_name = os.path.splitext(filename)[0]
+            word_lists[base_name] = words
+    return word_lists
+
+
+favorite_words = [
+"Adulterate","dulterate",
+"Aplomb", "aplomb"
+"Attrit", "attrit"
+"Barycenter", "barycenter",
+"Behooves", "behooves",
+"Chortle", "chortle", 
+"Cromulent","cromulent", 
+"Defenestrate", "defenestrate", 
+"Derelict", "derelict", 
+"Disheveled", "disheveled", 
+"Druthers", "druthers",
+"Explicate", "explicate",
+"Extricate", "extricate"
+"Globule", "globule",
+"Guffaw", "guffaw"
+"Indefatigable", "indefatigable"
+"Listless", "listless", 
+"Methinks", "methinks", 
+"Milquetoast", "milquetoast", 
+"Modicum", "modicum", 
+"Nonplussed", "nonplussed",
+"Paucity", "paucity"
+"Penultimate", "penultimate", 
+"Proffer", "proffer",
+"Sans", "sans",
+"Simpliciter", "simpliciter",
+"Untoward", "untoward"
+"Vestibule", "vestibule"
+"Vorpal", "vorpal"
+]
+
+folder_path = input("Enter folder path: ")
+word_lists = process_folder(folder_path)
+
+
+for file_name in word_lists:
+    fav_words_in_file = []
+    for word in favorite_words:
+        if word in word_lists[file_name]:
+            fav_words_in_file.append(word)
+    if not fav_words_in_file:
+        continue
+    else:
+        print("\nFILE " + file_name)
+        for word in fav_words_in_file:
+            print("     " + word)
+
+print("\nAnalysis complete.")
