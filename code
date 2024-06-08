@@ -29,9 +29,9 @@ def process_folder(folder_path):
 
 
 favorite_words = [
-"Adulterate","dulterate",
-"Aplomb", "aplomb"
-"Attrit", "attrit"
+"Adulterate","adulterate",
+"Aplomb", "aplomb",
+"Attrit", "attrit",
 "Barycenter", "barycenter",
 "Behooves", "behooves",
 "Chortle", "chortle", 
@@ -41,28 +41,37 @@ favorite_words = [
 "Disheveled", "disheveled", 
 "Druthers", "druthers",
 "Explicate", "explicate",
-"Extricate", "extricate"
+"Extricate", "extricate",
 "Globule", "globule",
-"Guffaw", "guffaw"
-"Indefatigable", "indefatigable"
+"Guffaw", "guffaw",
+"Indefatigable", "indefatigable",
 "Listless", "listless", 
 "Methinks", "methinks", 
 "Milquetoast", "milquetoast", 
 "Modicum", "modicum", 
 "Nonplussed", "nonplussed",
-"Paucity", "paucity"
+"Paucity", "paucity",
 "Penultimate", "penultimate", 
 "Proffer", "proffer",
 "Sans", "sans",
 "Simpliciter", "simpliciter",
-"Untoward", "untoward"
-"Vestibule", "vestibule"
+"Untoward", "untoward",
+"Vestibule", "vestibule",
 "Vorpal", "vorpal"
 ]
 
 #Get the folder path by right-clicking on the the folder and selecting "copy as path." Remove quotations marks after pasting.
-folder_path = input("Enter folder path: ")
-word_lists = process_folder(folder_path)
+folder_path = input("Enter folder path or type 'show favorite words': ")
+
+if folder_path == 'show favorite words':
+    for word in range(0, len(favorite_words), 2):
+        print(favorite_words[word])
+    folder_path = input('\nEnter folder path, "show favorite words", or \
+"quit": ')
+elif folder_path == "quit":
+    quit()
+else:
+    word_lists = process_folder(folder_path)
 
 
 for file_name in word_lists:
